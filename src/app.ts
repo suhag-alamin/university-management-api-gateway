@@ -12,14 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use('/api/v1', routes);
-app.get('/', (req, res) => {
-  res.send('Server started');
-});
+app.use('/api/v1', routes);
 
 app.use(globalExceptionHandler);
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
     message: 'API not found',
