@@ -1,7 +1,7 @@
 import { createClient } from 'redis';
 import config from '../config';
 
-let redisClient = createClient({
+const redisClient = createClient({
   url: config.redis.url
 });
 
