@@ -26,8 +26,6 @@ const getSingleFaculty = async (req: Request): Promise<IGenericResponse> => {
 const updateFaculty = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
 
-  console.log(id);
-
   const response: IGenericResponse = await HttpService.patch(`/faculties/${id}`, req.body, {
     headers: {
       Authorization: req.headers.authorization
