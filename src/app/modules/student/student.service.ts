@@ -25,15 +25,11 @@ const getSingleStudent = async (req: Request): Promise<IGenericResponse> => {
 };
 const updateStudent = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await HttpService.patch(
-    `/students/${id}`,
-    {
-      headers: {
-        Authorization: req.headers.authorization
-      }
-    },
-    req.body
-  );
+  const response: IGenericResponse = await HttpService.patch(`/students/${id}`, req.body, {
+    headers: {
+      Authorization: req.headers.authorization
+    }
+  });
 
   return response;
 };
