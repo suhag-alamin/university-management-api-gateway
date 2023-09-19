@@ -9,7 +9,6 @@ const createManagementDepartmentController = catchAsync(async (req: Request, res
   sendResponse(res, result);
 });
 const getAllManagementDepartmentsController = catchAsync(async (req: Request, res: Response) => {
-  console.log('HITTING');
   const result = await ManagementDepartmentService.getAllManagementDepartments(req);
 
   sendResponse(res, result);
