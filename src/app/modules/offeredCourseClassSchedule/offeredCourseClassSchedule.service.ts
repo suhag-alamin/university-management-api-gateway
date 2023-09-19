@@ -3,7 +3,7 @@ import { IGenericResponse } from '../../../interfaces/common';
 import { CoreService } from '../../../shared/axios';
 const createOfferedCourseClassSchedule = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.post(
-    `/offered-course-class-schedules`,
+    `/offered-course-class-schedule`,
     req.body,
     {
       headers: {
@@ -14,7 +14,7 @@ const createOfferedCourseClassSchedule = async (req: Request): Promise<IGenericR
   return response;
 };
 const getAllOfferedCourseClassSchedules = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.get('/offered-course-class-schedules', {
+  const response: IGenericResponse = await CoreService.get('/offered-course-class-schedule', {
     params: req.query,
     headers: {
       Authorization: req.headers.authorization
@@ -25,21 +25,18 @@ const getAllOfferedCourseClassSchedules = async (req: Request): Promise<IGeneric
 
 const getSingleOfferedCourseClassSchedule = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.get(
-    `/offered-course-class-schedules/${id}`,
-    {
-      headers: {
-        Authorization: req.headers.authorization
-      }
+  const response: IGenericResponse = await CoreService.get(`/offered-course-class-schedule/${id}`, {
+    headers: {
+      Authorization: req.headers.authorization
     }
-  );
+  });
   return response;
 };
 
 const updateOfferedCourseClassSchedule = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
   const response: IGenericResponse = await CoreService.patch(
-    `/offered-course-class-schedules/${id}`,
+    `/offered-course-class-schedule/${id}`,
     req.body,
     {
       headers: {
@@ -53,7 +50,7 @@ const updateOfferedCourseClassSchedule = async (req: Request): Promise<IGenericR
 const deleteOfferedCourseClassSchedule = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
   const response: IGenericResponse = await CoreService.delete(
-    `/offered-course-class-schedules/${id}`,
+    `/offered-course-class-schedule/${id}`,
     {
       headers: {
         Authorization: req.headers.authorization
