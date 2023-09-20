@@ -150,7 +150,6 @@ const createAdmin = async (req: Request) => {
 
   return response;
 };
-// ! create faculty admin and get update delete all
 export const UserService = {
   createStudent,
   createFaculty,
