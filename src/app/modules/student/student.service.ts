@@ -50,3 +50,4 @@ export const StudentService = {
   updateStudent,
   deleteStudent
 };
+// ! Student, courses, student course schedule, courses academic info

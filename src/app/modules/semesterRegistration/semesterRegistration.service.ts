@@ -160,3 +160,5 @@ export const SemesterRegistrationService = {
   confirmStudentRegistration,
   startNewSemester
 };
+
+// ! full student semester registration

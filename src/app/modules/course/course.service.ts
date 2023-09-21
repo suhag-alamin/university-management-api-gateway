@@ -58,3 +58,5 @@ export const RoomService = {
   updateCourse,
   deleteCourse
 };
+
+// ! Assign faculties, remove faculties

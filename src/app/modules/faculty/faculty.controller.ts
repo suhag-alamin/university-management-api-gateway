@@ -24,9 +24,35 @@ const deleteFacultyController = catchAsync(async (req: Request, res: Response) =
   sendResponse(res, result);
 });
 
+const assignCoursesController = catchAsync(async (req: Request, res: Response) => {
+  const result = await FacultyService.assignCourses(req);
+
+  sendResponse(res, result);
+});
+const removeCoursesController = catchAsync(async (req: Request, res: Response) => {
+  const result = await FacultyService.removeCourses(req);
+
+  sendResponse(res, result);
+});
+
+const facultyCoursesController = catchAsync(async (req: Request, res: Response) => {
+  const result = await FacultyService.facultyCourses(req);
+
+  sendResponse(res, result);
+});
+const getFacultyCourseStudentsController = catchAsync(async (req: Request, res: Response) => {
+  const result = await FacultyService.getFacultyCourseStudents(req);
+
+  sendResponse(res, result);
+});
+
 export const FacultyController = {
   getAllFacultiesController,
   getSingleFacultyController,
   updateFacultyController,
-  deleteFacultyController
+  deleteFacultyController,
+  facultyCoursesController,
+  getFacultyCourseStudentsController,
+  assignCoursesController,
+  removeCoursesController
 };

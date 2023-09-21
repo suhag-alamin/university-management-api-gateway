@@ -7,6 +7,17 @@ import { ENUM_USER_ROLE } from '../../../enums/user';
 
 const router = express.Router();
 
+// student
+router.get('/my-courses', auth(ENUM_USER_ROLE.FACULTY), FacultyController.facultyCoursesController);
+
+router.get(
+  '/my-course-students',
+  auth(ENUM_USER_ROLE.FACULTY),
+  FacultyController.getFacultyCourseStudentsController
+);
+
+// student
+
 router.get(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
@@ -29,6 +40,21 @@ router.delete(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   FacultyController.deleteFacultyController
+);
+
+// courses
+
+router.post(
+  '/:facultyId/assign-courses',
+  validateRequest(FacultyValidation.assignOrRemoveCoursesZodSchema),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  FacultyController.assignCoursesController
+);
+router.delete(
+  '/:facultyId/remove-courses',
+  validateRequest(FacultyValidation.assignOrRemoveCoursesZodSchema),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  FacultyController.removeCoursesController
 );
 
 export const FacultyRoutes = router;
