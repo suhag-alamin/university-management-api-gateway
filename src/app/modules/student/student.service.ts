@@ -1,9 +1,9 @@
 import { Request } from 'express';
 import { IGenericResponse } from '../../../interfaces/common';
-import { AuthService as HttpService } from '../../../shared/axios';
+import { AuthService, CoreService } from '../../../shared/axios';
 
 const getAllStudents = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await HttpService.get('/students', {
+  const response: IGenericResponse = await AuthService.get('/students', {
     params: req.query,
 
     headers: {
@@ -15,7 +15,7 @@ const getAllStudents = async (req: Request): Promise<IGenericResponse> => {
 };
 const getSingleStudent = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await HttpService.get(`/students/${id}`, {
+  const response: IGenericResponse = await AuthService.get(`/students/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -25,7 +25,7 @@ const getSingleStudent = async (req: Request): Promise<IGenericResponse> => {
 };
 const updateStudent = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await HttpService.patch(`/students/${id}`, req.body, {
+  const response: IGenericResponse = await AuthService.patch(`/students/${id}`, req.body, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -35,7 +35,34 @@ const updateStudent = async (req: Request): Promise<IGenericResponse> => {
 };
 const deleteStudent = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await HttpService.delete(`/students/${id}`, {
+  const response: IGenericResponse = await AuthService.delete(`/students/${id}`, {
+    headers: {
+      Authorization: req.headers.authorization
+    }
+  });
+
+  return response;
+};
+const studentCourses = async (req: Request): Promise<IGenericResponse> => {
+  const response: IGenericResponse = await CoreService.get(`/students/my-courses`, {
+    headers: {
+      Authorization: req.headers.authorization
+    }
+  });
+
+  return response;
+};
+const getStudentCourseSchedules = async (req: Request): Promise<IGenericResponse> => {
+  const response: IGenericResponse = await CoreService.get(`/students/my-course-schedules`, {
+    headers: {
+      Authorization: req.headers.authorization
+    }
+  });
+
+  return response;
+};
+const studentAcademicInfo = async (req: Request): Promise<IGenericResponse> => {
+  const response: IGenericResponse = await CoreService.get(`/students/my-academic-info`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -48,6 +75,8 @@ export const StudentService = {
   getAllStudents,
   getSingleStudent,
   updateStudent,
-  deleteStudent
+  deleteStudent,
+  studentCourses,
+  getStudentCourseSchedules,
+  studentAcademicInfo
 };
-// ! Student, courses, student course schedule, courses academic info

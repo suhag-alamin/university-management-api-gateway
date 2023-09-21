@@ -23,10 +23,28 @@ const deleteStudentController = catchAsync(async (req: Request, res: Response) =
 
   sendResponse(res, result);
 });
+const studentCoursesController = catchAsync(async (req: Request, res: Response) => {
+  const result = await StudentService.studentCourses(req);
+
+  sendResponse(res, result);
+});
+const getStudentCourseSchedulesController = catchAsync(async (req: Request, res: Response) => {
+  const result = await StudentService.getStudentCourseSchedules(req);
+
+  sendResponse(res, result);
+});
+const studentAcademicInfoController = catchAsync(async (req: Request, res: Response) => {
+  const result = await StudentService.studentAcademicInfo(req);
+
+  sendResponse(res, result);
+});
 
 export const StudentController = {
   getAllStudentsController,
   getSingleStudentController,
   updateStudentController,
-  deleteStudentController
+  deleteStudentController,
+  getStudentCourseSchedulesController,
+  studentAcademicInfoController,
+  studentCoursesController
 };
