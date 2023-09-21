@@ -26,11 +26,21 @@ const deleteCourseController = catchAsync(async (req: Request, res: Response) =>
   const result = await RoomService.deleteCourse(req);
   sendResponse(res, result);
 });
+const assignFacultiesController = catchAsync(async (req: Request, res: Response) => {
+  const result = await RoomService.assignFaculties(req);
+  sendResponse(res, result);
+});
+const removeFacultiesController = catchAsync(async (req: Request, res: Response) => {
+  const result = await RoomService.removeFaculties(req);
+  sendResponse(res, result);
+});
 
 export const CourseController = {
   createCourseController,
   getAllCoursesController,
   getSingleCourseController,
   updateCourseController,
-  deleteCourseController
+  deleteCourseController,
+  assignFacultiesController,
+  removeFacultiesController
 };

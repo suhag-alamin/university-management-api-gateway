@@ -50,13 +50,41 @@ const deleteCourse = async (req: Request): Promise<IGenericResponse> => {
   });
   return response;
 };
+const assignFaculties = async (req: Request): Promise<IGenericResponse> => {
+  const { id } = req.params;
+  const response: IGenericResponse = await CoreService.post(
+    `/courses/${id}/assign-faculties`,
+    req.body,
+    {
+      headers: {
+        Authorization: req.headers.authorization
+      }
+    }
+  );
+  return response;
+};
+const removeFaculties = async (req: Request): Promise<IGenericResponse> => {
+  const { id } = req.params;
+  const response: IGenericResponse = await CoreService.patch(
+    `/courses/${id}/remove-faculties`,
+    req.body,
+    {
+      headers: {
+        Authorization: req.headers.authorization
+      }
+    }
+  );
+  return response;
+};
 
 export const RoomService = {
   createCourse,
   getAllCourses,
   getSingleCourse,
   updateCourse,
-  deleteCourse
+  deleteCourse,
+  assignFaculties,
+  removeFaculties
 };
 
 // ! Assign faculties, remove faculties
