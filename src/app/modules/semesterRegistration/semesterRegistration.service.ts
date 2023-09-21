@@ -56,9 +56,20 @@ const deleteSemesterRegistration = async (req: Request): Promise<IGenericRespons
 
 // student
 
+// const getStudentRegistration = async (req: Request): Promise<IGenericResponse> => {
+//   const response: IGenericResponse = await CoreService.get(
+//     `/semester-registration/get-student-registration`,
+//     {
+//       headers: {
+//         Authorization: req.headers.authorization
+//       }
+//     }
+//   );
+//   return response;
+// };
 const getStudentRegistration = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.get(
-    `/semester-registration/get-my-registration`,
+    `/semester-registration/get-student-registration`,
     {
       headers: {
         Authorization: req.headers.authorization
@@ -160,5 +171,3 @@ export const SemesterRegistrationService = {
   confirmStudentRegistration,
   startNewSemester
 };
-
-// ! full student semester registration
